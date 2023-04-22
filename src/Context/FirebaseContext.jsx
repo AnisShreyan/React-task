@@ -9,12 +9,12 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+const FirebaseContext = createContext();
 export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props) => {
   const provider = new GoogleAuthProvider();
   
-  const FirebaseContext = createContext();
   
   
   const auth = getAuth(firebaseApp);
