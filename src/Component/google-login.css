@@ -1,0 +1,17 @@
+.google-login{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    border: 1px solid #4285F4;
+    border-radius: 5px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 5px;
+    cursor: pointer;
+    user-select: none;
+}
+.google-login p {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
