@@ -9,15 +9,15 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-const provider = new GoogleAuthProvider();
-
-const FirebaseContext = createContext();
-
 export const useFirebase = () => useContext(FirebaseContext);
 
-const auth = getAuth(firebaseApp);
-
 export const FirebaseProvider = (props) => {
+  const provider = new GoogleAuthProvider();
+  
+  const FirebaseContext = createContext();
+  
+  
+  const auth = getAuth(firebaseApp);
   const SignUp = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password).then(
       (userCredential) => {
@@ -43,13 +43,23 @@ export const FirebaseProvider = (props) => {
   };
 
   const SignUpwithGoogle = () => {
-    signInWithPopup(auth, provider).then((result) => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
   };
